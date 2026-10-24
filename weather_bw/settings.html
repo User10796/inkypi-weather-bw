@@ -1,0 +1,91 @@
+<style>
+    .wbw-hint { font-size: 0.85rem; opacity: 0.75; margin-top: 0.25rem; }
+    .wbw-row { display: flex; gap: 0.5rem; }
+    .wbw-row .form-input { min-width: 0; }
+</style>
+
+<div class="form-group">
+    <div class="form-group">
+        <label class="form-label">Location</label>
+        <div class="wbw-row">
+            <input type="number" id="wbwLatitude" name="latitude" step="any" min="-90" max="90" placeholder="Latitude" required class="form-input">
+            <input type="number" id="wbwLongitude" name="longitude" step="any" min="-180" max="180" placeholder="Longitude" required class="form-input">
+        </div>
+        <div class="wbw-hint">In Apple Maps, drop a pin and swipe up to see its coordinates. Tifton is 31.4505, -83.5085.</div>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwLabel" class="form-label">Location name:</label>
+        <input type="text" id="wbwLabel" name="location_label" placeholder="Tifton" class="form-input">
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwLayout" class="form-label">Layout:</label>
+        <select id="wbwLayout" name="layout" class="form-input">
+            <option value="dashboard">Dashboard (now, today, next hours, week)</option>
+            <option value="hourly">Hourly chart</option>
+            <option value="week">Week cards</option>
+        </select>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwUnits" class="form-label">Units:</label>
+        <select id="wbwUnits" name="units" class="form-input">
+            <option value="imperial">°F, mph</option>
+            <option value="metric">°C, km/h</option>
+        </select>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwHours" class="form-label">Hours in chart:</label>
+        <select id="wbwHours" name="hours" class="form-input">
+            <option value="24">24</option>
+            <option value="12">12</option>
+        </select>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwDays" class="form-label">Days:</label>
+        <select id="wbwDays" name="days" class="form-input">
+            <option value="7">7</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwFont" class="form-label">Font:</label>
+        <select id="wbwFont" name="font_style" class="form-input">
+            <option value="sans">Sans, extra legible (Atkinson Hyperlegible)</option>
+            <option value="serif">Serif (Lora)</option>
+        </select>
+    </div>
+
+    <div class="form-group nowrap">
+        <label for="wbwAlerts" class="form-label">Weather alerts banner:</label>
+        <div class="toggle-container">
+            <input type="checkbox" id="wbwAlerts" name="show_alerts" value="true" class="toggle-checkbox" checked>
+            <label for="wbwAlerts" class="toggle-label"></label>
+        </div>
+    </div>
+    <div class="wbw-hint">National Weather Service alerts (US only). The top strip turns black while an alert is active.</div>
+
+    <!-- Always posted, so the plugin can tell "alerts unchecked" from "never saved". -->
+    <input type="hidden" name="form_version" value="1">
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (loadPluginSettings) {
+            document.getElementById('wbwLatitude').value = pluginSettings.latitude || '';
+            document.getElementById('wbwLongitude').value = pluginSettings.longitude || '';
+            document.getElementById('wbwLabel').value = pluginSettings.location_label || '';
+            document.getElementById('wbwLayout').value = pluginSettings.layout || 'dashboard';
+            document.getElementById('wbwUnits').value = pluginSettings.units || 'imperial';
+            document.getElementById('wbwHours').value = pluginSettings.hours || '24';
+            document.getElementById('wbwDays').value = pluginSettings.days || '7';
+            document.getElementById('wbwFont').value = pluginSettings.font_style || 'sans';
+            document.getElementById('wbwAlerts').checked =
+                pluginSettings.form_version ? pluginSettings.show_alerts === 'true' : true;
+        }
+    });
+</script>

@@ -1,0 +1,4 @@
+# Same Pillow as InkyPi pins (install/requirements.txt). Not named
+# requirements.txt on purpose: InkyPi's plugin installer pip-installs that.
+pillow==12.3.0
+pytest>=8

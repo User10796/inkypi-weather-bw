@@ -1,0 +1,6 @@
+{
+    "display_name": "Weather (B&W)",
+    "id": "weather_bw",
+    "class": "WeatherBW",
+    "repository": "https://github.com/User10796/inkypi-weather-bw"
+}
